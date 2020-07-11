@@ -46,6 +46,7 @@ export default function SelectField(props: IProps) {
         closeModal={() => setOpenModal(false)}
         title={modalTitle}
         options={modalOptions}
+        value={value}
         onSave={(text: string) => onChange(text)}
       />
     </div>

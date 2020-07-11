@@ -7,13 +7,14 @@ interface IProps {
   closeModal: () => void
   title: string
   options: any[]
+  value: string
   onSave: (text: string) => void
 }
 
 export default function SelectModal(props: IProps) {
-  const { modalOpen, closeModal, title, options, onSave } = props
+  const { modalOpen, closeModal, title, options, value, onSave } = props
 
-  const [selectedOption, setSelectedOption] = useState<string>(options[0])
+  const [selectedOption, setSelectedOption] = useState<string>(value)
 
   const onOKPress = () => {
     closeModal()
