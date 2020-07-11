@@ -58,7 +58,7 @@ export default function Home() {
           </Row>
           <Row xs="2">
             {buttons.map((data, index) => (
-              <Col>
+              <Col key={index}>
                 <Link to={data.route} className='start-btn' style={{backgroundColor: data.color}}>
                   <img src={data.icon} alt={data.text} />
                   <span>{data.text}</span>

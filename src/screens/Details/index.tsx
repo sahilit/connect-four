@@ -1,25 +1,38 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
+
 import Header from '../../components/Header'
 import InputField from './InputField'
 import SelectField from './SelectField'
 
 import './style.sass'
 
-const noOfGameOptions: string[] = ['2 Games', '3 Games', '5 Games', '10 Games']
+interface IProps {
+  noOfGameOptions: string[]
+  whoStartsOptions: string[]
+  player1: string
+  player2: string
+  noOfGame: string
+  whoStarts: string
+  onPlayer1Change: (text: string) => void
+  onPlayer2Change: (text: string) => void
+  onNoOfGameChange: (text: string) => void
+  onWhoStartsChange: (text: string) => void
+}
 
-const whoStartsOptions: string[] = [
-  'Alternative turn',
-  'Looser first',
-  'Winner first',
-  'Always player 01',
-  'Always player 02',
-]
-
-export default function Details() {
-  const [player1, setPlayer1] = useState<string>('')
-  const [player2, setPlayer2] = useState<string>('')
-  const [noOfGame, setNoOfGame] = useState<string>(noOfGameOptions[0])
-  const [whoStarts, setWhoStarts] = useState<string>(whoStartsOptions[0])
+export default function Details(props: IProps) {
+  const {
+    noOfGameOptions,
+    whoStartsOptions,
+    player1,
+    player2,
+    noOfGame,
+    whoStarts,
+    onPlayer1Change,
+    onPlayer2Change,
+    onNoOfGameChange,
+    onWhoStartsChange,
+  } = props
 
   return (
     <div id='details'>
@@ -29,7 +42,7 @@ export default function Details() {
         <InputField
           label='Player 01'
           value={player1}
-          onChange={(text: string) => setPlayer1(text)}
+          onChange={onPlayer1Change}
           defaultImage={require('../../assets/images/avatar01/avatar01.png')}
           backgroundColor='#DCF6E4'
           borderColor='#37AC5D'
@@ -37,7 +50,7 @@ export default function Details() {
         <InputField
           label='Player 02'
           value={player2}
-          onChange={(text: string) => setPlayer2(text)}
+          onChange={onPlayer2Change}
           defaultImage={require('../../assets/images/avatar02/avatar02.png')}
           backgroundColor='#F6EFD5'
           borderColor='#F8D146'
@@ -45,7 +58,7 @@ export default function Details() {
         <SelectField
           label='Number of game'
           value={noOfGame}
-          onChange={(text: string) => setNoOfGame(text)}
+          onChange={onNoOfGameChange}
           defaultImage={require('../../assets/images/winner/winner.png')}
           modalTitle='Number of game'
           modalOptions={noOfGameOptions}
@@ -53,7 +66,7 @@ export default function Details() {
         <SelectField
           label='Who starts'
           value={whoStarts}
-          onChange={(text: string) => setWhoStarts(text)}
+          onChange={onWhoStartsChange}
           defaultImage={require('../../assets/images/run/run.png')}
           modalTitle='Who starts'
           modalOptions={whoStartsOptions}
@@ -61,7 +74,9 @@ export default function Details() {
 
         <div className='bottom-line' />
 
-        <button className='start-btn'>Start Game</button>
+        <Link to='/game' className='start-btn'>
+          Start Game
+        </Link>
       </div>
     </div>
   )

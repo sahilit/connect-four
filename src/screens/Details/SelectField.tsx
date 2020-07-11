@@ -24,15 +24,19 @@ export default function SelectField(props: IProps) {
 
   return (
     <div className='details-box' style={{ backgroundColor: '#EFF3FF' }}>
-      <div className='avatar-container' style={{ borderColor: '#B1C4F9', paddingTop: 10 }}>
+      <div
+        className='avatar-container'
+        style={{ borderColor: '#B1C4F9', paddingTop: 10 }}
+      >
         <img src={defaultImage} alt={label} />
       </div>
       <div className='input-field' onClick={() => setOpenModal(true)}>
-        <label>{label}</label>
+        <label style={{ cursor: 'pointer' }}>{label}</label>
         <input
           type='text'
           placeholder='Enter name'
           value={value}
+          style={{ cursor: 'pointer' }}
           disabled={true}
           onChange={(e) => onChange(e.target.value)}
         />

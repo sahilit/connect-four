@@ -36,6 +36,7 @@ export default function SelectModal(props: IProps) {
                 name='tag'
                 id={option}
                 checked={selectedOption === option}
+                onChange={() => setSelectedOption(option)}
               />
               <label>{option}</label>
             </div>
