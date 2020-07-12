@@ -23,8 +23,6 @@ export default function Game(props: IProps) {
     player2Avatar,
   } = props
 
-  console.log(props)
-
   const initStartPlayer = whoStarts === 'Always player 02' ? player2 : player1
 
   const [board, setBoard] = useState<any[]>(
@@ -39,7 +37,6 @@ export default function Game(props: IProps) {
 
   useEffect(() => {
     let win = checkWinner(board)
-    console.log('win', win)
     if (winner !== win) {
       setWinner(win)
       if (win === player1) {

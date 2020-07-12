@@ -26,7 +26,7 @@ export default function SelectField(props: IProps) {
     <div className='details-box' style={{ backgroundColor: '#EFF3FF' }}>
       <div
         className='avatar-container'
-        style={{ borderColor: '#B1C4F9', paddingTop: 10 }}
+        style={{ borderColor: '#B1C4F9', paddingTop: 10, paddingBottom: 10 }}
       >
         <img src={defaultImage} alt={label} />
       </div>
