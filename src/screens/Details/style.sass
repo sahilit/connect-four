@@ -31,9 +31,25 @@
         border-radius: 50%
         box-shadow: 0px 3px 6px #00000029
         height: 100px
+        overflow: hidden
+        position: relative
         text-align: center
         width: 100px
         z-index: 1
+
+        .image-picker
+          height: 100%
+          left: 0
+          opacity: 0
+          position: absolute
+          top: 0
+          width: 100%
+
+        img
+          // min-height: 70px
+          // min-width: 70px
+          max-height: 100%
+          max-width: 100%
 
       .input-field
         display: flex

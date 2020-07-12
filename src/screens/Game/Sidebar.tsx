@@ -13,6 +13,8 @@ interface IProps {
   playAgainClick: () => void
   nextGameClick: () => void
   undoStepClick: () => void
+  player1Avatar: string
+  player2Avatar: string
 }
 
 export default function Sidebar(props: IProps) {
@@ -28,6 +30,8 @@ export default function Sidebar(props: IProps) {
     playAgainClick,
     nextGameClick,
     undoStepClick,
+    player1Avatar,
+    player2Avatar,
   } = props
 
   const totalGames = parseInt(noOfGame)
@@ -103,7 +107,7 @@ export default function Sidebar(props: IProps) {
           <div className='avatar-container' style={{ borderColor: '#37AC5D' }}>
             {currentPlayer === player1 && winner.length === 0 && <div className='live-ring' />}
             <img
-              src={require('../../assets/images/avatar01/avatar01.png')}
+              src={player1Avatar || require('../../assets/images/avatar01/avatar01.png')}
               alt=''
             />
           </div>
@@ -121,7 +125,7 @@ export default function Sidebar(props: IProps) {
           <div className='avatar-container' style={{ borderColor: '#F8D146' }}>
             {currentPlayer === player2 && winner.length === 0 && <div className='live-ring' />}
             <img
-              src={require('../../assets/images/avatar02/avatar02.png')}
+              src={player2Avatar || require('../../assets/images/avatar02/avatar02.png')}
               alt=''
             />
           </div>

@@ -9,10 +9,21 @@ interface IProps {
   player2: string
   noOfGame: string
   whoStarts: string
+  player1Avatar: string
+  player2Avatar: string
 }
 
 export default function Game(props: IProps) {
-  const { player1, player2, noOfGame, whoStarts } = props
+  const {
+    player1,
+    player2,
+    noOfGame,
+    whoStarts,
+    player1Avatar,
+    player2Avatar,
+  } = props
+
+  console.log(props)
 
   const initStartPlayer = whoStarts === 'Always player 02' ? player2 : player1
 
@@ -182,12 +193,18 @@ export default function Game(props: IProps) {
                   >
                     {board[i][j] === player1 ? (
                       <img
-                        src={require('../../assets/images/avatar01/avatar01.png')}
+                        src={
+                          player1Avatar ||
+                          require('../../assets/images/avatar01/avatar01.png')
+                        }
                         alt={board[i][j]}
                       />
                     ) : board[i][j] === player2 ? (
                       <img
-                        src={require('../../assets/images/avatar02/avatar02.png')}
+                        src={
+                          player2Avatar ||
+                          require('../../assets/images/avatar02/avatar02.png')
+                        }
                         alt={board[i][j]}
                       />
                     ) : (
@@ -212,6 +229,8 @@ export default function Game(props: IProps) {
           playAgainClick={playAgainClick}
           nextGameClick={nextGameClick}
           undoStepClick={undoStepClick}
+          player1Avatar={player1Avatar}
+          player2Avatar={player2Avatar}
         />
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 interface IProps {
   label: string
@@ -7,6 +7,8 @@ interface IProps {
   defaultImage: string
   backgroundColor: string
   borderColor: string
+  image: string
+  onImageChange: (text: string) => void
 }
 
 export default function InputField(props: IProps) {
@@ -17,12 +19,30 @@ export default function InputField(props: IProps) {
     defaultImage,
     backgroundColor,
     borderColor,
+    image,
+    onImageChange,
   } = props
+
+  const handleFileChange = (event: any) => {
+    const { target } = event
+    const { files } = target
+
+    if (files && files[0]) {
+      var reader = new FileReader()
+
+      reader.onload = (event: any) => {
+        onImageChange(event.target.result)
+      }
+
+      reader.readAsDataURL(files[0])
+    }
+  }
 
   return (
     <div className='details-box' style={{ backgroundColor }}>
       <div className='avatar-container' style={{ borderColor }}>
-        <img src={defaultImage} alt='' />
+        <input type='file' accept='image/*' className="image-picker" onChange={handleFileChange} />
+        <img src={image || defaultImage} alt='avatar' />
       </div>
       <div className='input-field'>
         <label>{label}</label>

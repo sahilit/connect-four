@@ -22,6 +22,8 @@ function App() {
   const [player2, setPlayer2] = useState<string>('')
   const [noOfGame, setNoOfGame] = useState<string>(noOfGameOptions[0])
   const [whoStarts, setWhoStarts] = useState<string>(whoStartsOptions[0])
+  const [player1Avatar, setPlayer1Avatar] = useState<any>('')
+  const [player2Avatar, setPlayer2Avatar] = useState<any>('')
 
   return (
     <div className='app'>
@@ -35,10 +37,14 @@ function App() {
               player2={player2}
               noOfGame={noOfGame}
               whoStarts={whoStarts}
+              player1Avatar={player1Avatar}
+              player2Avatar={player2Avatar}
               onPlayer1Change={(text: string) => setPlayer1(text)}
               onPlayer2Change={(text: string) => setPlayer2(text)}
               onNoOfGameChange={(text: string) => setNoOfGame(text)}
               onWhoStartsChange={(text: string) => setWhoStarts(text)}
+              onPlayer1AvatarChange={(text: string) => setPlayer1Avatar(text)}
+              onPlayer2AvatarChange={(text: string) => setPlayer2Avatar(text)}
             />
           </Route>
           <Route path='/game'>
@@ -47,6 +53,8 @@ function App() {
               player2={player2}
               noOfGame={noOfGame}
               whoStarts={whoStarts}
+              player1Avatar={player1Avatar}
+              player2Avatar={player2Avatar}
             />
           </Route>
           <Route path='/comming_soon'>

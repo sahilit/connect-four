@@ -14,10 +14,14 @@ interface IProps {
   player2: string
   noOfGame: string
   whoStarts: string
+  player1Avatar: string
+  player2Avatar: string
   onPlayer1Change: (text: string) => void
   onPlayer2Change: (text: string) => void
   onNoOfGameChange: (text: string) => void
   onWhoStartsChange: (text: string) => void
+  onPlayer1AvatarChange: (text: string) => void
+  onPlayer2AvatarChange: (text: string) => void
 }
 
 export default function Details(props: IProps) {
@@ -28,10 +32,14 @@ export default function Details(props: IProps) {
     player2,
     noOfGame,
     whoStarts,
+    player1Avatar,
+    player2Avatar,
     onPlayer1Change,
     onPlayer2Change,
     onNoOfGameChange,
     onWhoStartsChange,
+    onPlayer1AvatarChange,
+    onPlayer2AvatarChange
   } = props
 
   return (
@@ -43,6 +51,8 @@ export default function Details(props: IProps) {
           label='Player 01'
           value={player1}
           onChange={onPlayer1Change}
+          image={player1Avatar}
+          onImageChange={onPlayer1AvatarChange}
           defaultImage={require('../../assets/images/avatar01/avatar01.png')}
           backgroundColor='#DCF6E4'
           borderColor='#37AC5D'
@@ -51,6 +61,8 @@ export default function Details(props: IProps) {
           label='Player 02'
           value={player2}
           onChange={onPlayer2Change}
+          image={player2Avatar}
+          onImageChange={onPlayer2AvatarChange}
           defaultImage={require('../../assets/images/avatar02/avatar02.png')}
           backgroundColor='#F6EFD5'
           borderColor='#F8D146'
