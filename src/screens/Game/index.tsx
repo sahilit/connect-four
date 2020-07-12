@@ -131,6 +131,7 @@ export default function Game(props: IProps) {
     setScoreOfPlayer1(0)
     setScoreOfPlayer2(0)
     setGameNumber(1)
+    setWinningCombination([])
     setCurrentPlayer(whoStarts === 'Always player 02' ? player2 : player1)
   }
 
@@ -138,6 +139,7 @@ export default function Game(props: IProps) {
     setBoard(new Array(8).fill(new Array(8).fill(null)))
     setWinner('')
     setGameNumber(gameNumber + 1)
+    setWinningCombination([])
 
     if (whoStarts === 'Always player 01') setCurrentPlayer(player1)
     if (whoStarts === 'Always player 02') setCurrentPlayer(player2)
@@ -158,36 +160,40 @@ export default function Game(props: IProps) {
             <div key={i} className='grid-col' onClick={() => handleClick(i)}>
               {board[i].map((y: any, j: number) => (
                 <div
-                  key={j}
                   className={
                     winningCombination.filter(
                       (d) => JSON.stringify(d) === JSON.stringify([i, j])
                     ).length > 0
-                      ? 'grid-row winning-ring'
-                      : 'grid-row'
+                      ? 'winning-ring'
+                      : ''
                   }
-                  style={{
-                    borderColor:
-                      board[i][j] === player1
-                        ? '#37AC5D'
-                        : board[i][j] === player2
-                        ? '#F8D146'
-                        : '#fff',
-                  }}
                 >
-                  {board[i][j] === player1 ? (
-                    <img
-                      src={require('../../assets/images/avatar01/avatar01.png')}
-                      alt={board[i][j]}
-                    />
-                  ) : board[i][j] === player2 ? (
-                    <img
-                      src={require('../../assets/images/avatar02/avatar02.png')}
-                      alt={board[i][j]}
-                    />
-                  ) : (
-                    <div />
-                  )}
+                  <div
+                    key={j}
+                    className='grid-row'
+                    style={{
+                      borderColor:
+                        board[i][j] === player1
+                          ? '#37AC5D'
+                          : board[i][j] === player2
+                          ? '#F8D146'
+                          : '#fff',
+                    }}
+                  >
+                    {board[i][j] === player1 ? (
+                      <img
+                        src={require('../../assets/images/avatar01/avatar01.png')}
+                        alt={board[i][j]}
+                      />
+                    ) : board[i][j] === player2 ? (
+                      <img
+                        src={require('../../assets/images/avatar02/avatar02.png')}
+                        alt={board[i][j]}
+                      />
+                    ) : (
+                      <div />
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
