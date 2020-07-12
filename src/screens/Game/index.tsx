@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
+/* eslint-disable array-callback-return */
+import React, { useState, useEffect, useRef } from 'react'
 import Header from '../../components/Header'
 import Sidebar from './Sidebar'
 
@@ -47,16 +48,23 @@ export default function Game(props: IProps) {
         setScoreOfPlayer2(scoreOfPlayer2 + 1)
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [board, winner])
 
   const targetRef = useRef(null)
 
   useEffect(() => {
-    window.addEventListener('resize', () => 
-      setGameBoardWidth(document.getElementsByClassName('game-board')[0].clientWidth / 8)
+    window.addEventListener('resize', () =>
+      setGameBoardWidth(
+        document.getElementsByClassName('game-board')[0].clientWidth / 8
+      )
     )
-    setGameBoardWidth(document.getElementsByClassName('game-board')[0].clientWidth / 8)
-    console.log(document.getElementsByClassName('game-board')[0].clientWidth / 8);
+    setGameBoardWidth(
+      document.getElementsByClassName('game-board')[0].clientWidth / 8
+    )
+    console.log(
+      document.getElementsByClassName('game-board')[0].clientWidth / 8
+    )
   }, [])
 
   const handleClick = (id: number) => {
