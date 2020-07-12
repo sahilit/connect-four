@@ -33,20 +33,22 @@ const buttons = [
 export default function Home() {
   return (
     <Container id="container">
-      <div className='title'>
-        <h1>CONNECT FOUR!</h1>
-        <p>Play with other players <br/> around the world.</p>
-      </div>
+      <Row>
+        <Col className='title' lg="5" md="12">
+          <h1>CONNECT FOUR!</h1>
+          <p>Play with other players around the world.</p>
+        </Col>
+      </Row>
       <div className='card'>
         <div className='main-card'>
           <Row className="top-section">
-            <Col xs="4">
+            <Col lg="4" md="12">
               <div className="play-box">
                 <i className="far fa-play-circle"></i>
                 <h3>PLAY</h3>
               </div> 
             </Col>
-            <Col xs="8">
+            <Col lg="8" md="12">
               <div className="banner-image-container">
                 <img
                   className='banner-image'
@@ -56,7 +58,7 @@ export default function Home() {
               </div>
             </Col>
           </Row>
-          <Row xs="2">
+          <Row sm="2" xs="1">
             {buttons.map((data, index) => (
               <Col key={index}>
                 <Link to={data.route} className='start-btn' style={{backgroundColor: data.color}}>
