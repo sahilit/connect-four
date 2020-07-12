@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import Header from '../../components/Header'
 import Sidebar from './Sidebar'
 
@@ -35,6 +35,7 @@ export default function Game(props: IProps) {
   const [gameNumber, setGameNumber] = useState<number>(1)
   const [winningCombination, setWinningCombination] = useState<any[]>([])
   const [lastStep, setLastStep] = useState<any[]>([])
+  const [gameBoardWidth, setGameBoardWidth] = useState<number>(0)
 
   useEffect(() => {
     let win = checkWinner(board)
@@ -48,6 +49,16 @@ export default function Game(props: IProps) {
     }
   }, [board, winner])
 
+  const targetRef = useRef(null)
+
+  useEffect(() => {
+    window.addEventListener('resize', () => 
+      setGameBoardWidth(document.getElementsByClassName('game-board')[0].clientWidth / 8)
+    )
+    setGameBoardWidth(document.getElementsByClassName('game-board')[0].clientWidth / 8)
+    console.log(document.getElementsByClassName('game-board')[0].clientWidth / 8);
+  }, [])
+
   const handleClick = (id: number) => {
     if (winner === '') {
       const boardCopy = board.map((arr: any) => {
@@ -60,7 +71,12 @@ export default function Game(props: IProps) {
         newSlat.reverse()
         setCurrentPlayer(currentPlayer === player1 ? player2 : player1)
         setBoard(boardCopy)
-        setLastStep([id, [...boardCopy[id]].indexOf(currentPlayer === player1 ? player1: player2)])
+        setLastStep([
+          id,
+          [...boardCopy[id]].indexOf(
+            currentPlayer === player1 ? player1 : player2
+          ),
+        ])
       }
     }
   }
@@ -179,7 +195,7 @@ export default function Game(props: IProps) {
       <Header headerTitle='Two Players Game' />
 
       <div className='card'>
-        <div className='game-board'>
+        <div className='game-board' ref={targetRef}>
           {board.map((x: any, i: number) => (
             <div key={i} className='grid-col' onClick={() => handleClick(i)}>
               {board[i].map((y: any, j: number) => (
@@ -197,6 +213,8 @@ export default function Game(props: IProps) {
                     key={j}
                     className='grid-row'
                     style={{
+                      height: gameBoardWidth - 16.5,
+                      width: gameBoardWidth - 16.5,
                       borderColor:
                         board[i][j] === player1
                           ? '#37AC5D'

@@ -104,7 +104,7 @@ export default function Sidebar(props: IProps) {
       {matchWonText()}
       {tournamentWonText()}
 
-      <div>
+      <div className="detail-container">
         <div className='details-box' style={{ backgroundColor: '#DCF6E4' }}>
           <div className='avatar-container' style={{ borderColor: '#37AC5D' }}>
             {currentPlayer === player1 && winner.length === 0 && <div className='live-ring' />}
@@ -144,10 +144,12 @@ export default function Sidebar(props: IProps) {
 
       <div className='bottom-line' />
 
-      {renderButton()}
-      <Link to='/details' className='modal-btn'>
-        End Tournament
-      </Link>
+      <div className="button-group">
+        {renderButton()}
+        <Link to='/details' className='modal-btn'>
+          End Tournament
+        </Link>
+      </div>
     </div>
   )
 }
