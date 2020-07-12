@@ -145,7 +145,7 @@ export default function Sidebar(props: IProps) {
       <div className='bottom-line' />
 
       {renderButton()}
-      <Link to='/' className='modal-btn'>
+      <Link to='/details' className='modal-btn'>
         End Tournament
       </Link>
     </div>
