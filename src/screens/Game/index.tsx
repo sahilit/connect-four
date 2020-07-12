@@ -163,11 +163,9 @@ export default function Game(props: IProps) {
   const undoStepClick = () => {
     board.map((x: any, i: number) =>
       board[i].map((y: any, j: number) => {
-        console.log('lastStep', lastStep);
         if (JSON.stringify([i, j]) === JSON.stringify(lastStep)) {
           const b = [...board]
           b[i][j] = null
-          console.log(b)
           setBoard(b)
           setCurrentPlayer(currentPlayer === player1 ? player2 : player1)
           setLastStep([])
