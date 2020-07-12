@@ -15,6 +15,7 @@ interface IProps {
   undoStepClick: () => void
   player1Avatar: string
   player2Avatar: string
+  lastStep: any[]
 }
 
 export default function Sidebar(props: IProps) {
@@ -32,6 +33,7 @@ export default function Sidebar(props: IProps) {
     undoStepClick,
     player1Avatar,
     player2Avatar,
+    lastStep,
   } = props
 
   const totalGames = parseInt(noOfGame)
@@ -87,7 +89,7 @@ export default function Sidebar(props: IProps) {
       )
     } else {
       return (
-        <button className='modal-btn primary' onClick={undoStepClick}>
+        <button className={`modal-btn primary ${lastStep.length < 1 ? 'disabled' : ''}`} onClick={undoStepClick} disabled={lastStep.length < 1}>
           Undo Step
         </button>
       )

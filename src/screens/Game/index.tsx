@@ -34,6 +34,7 @@ export default function Game(props: IProps) {
   const [scoreOfPlayer2, setScoreOfPlayer2] = useState<number>(0)
   const [gameNumber, setGameNumber] = useState<number>(1)
   const [winningCombination, setWinningCombination] = useState<any[]>([])
+  const [lastStep, setLastStep] = useState<any[]>([])
 
   useEffect(() => {
     let win = checkWinner(board)
@@ -59,6 +60,7 @@ export default function Game(props: IProps) {
         newSlat.reverse()
         setCurrentPlayer(currentPlayer === player1 ? player2 : player1)
         setBoard(boardCopy)
+        setLastStep([id, [...boardCopy[id]].indexOf(currentPlayer === player1 ? player1: player2)])
       }
     }
   }
@@ -140,6 +142,7 @@ export default function Game(props: IProps) {
     setScoreOfPlayer2(0)
     setGameNumber(1)
     setWinningCombination([])
+    setLastStep([])
     setCurrentPlayer(whoStarts === 'Always player 02' ? player2 : player1)
   }
 
@@ -148,6 +151,7 @@ export default function Game(props: IProps) {
     setWinner('')
     setGameNumber(gameNumber + 1)
     setWinningCombination([])
+    setLastStep([])
 
     if (whoStarts === 'Always player 01') setCurrentPlayer(player1)
     if (whoStarts === 'Always player 02') setCurrentPlayer(player2)
@@ -156,7 +160,21 @@ export default function Game(props: IProps) {
     if (whoStarts === 'Winner first') setCurrentPlayer(winner)
   }
 
-  const undoStepClick = () => {}
+  const undoStepClick = () => {
+    board.map((x: any, i: number) =>
+      board[i].map((y: any, j: number) => {
+        console.log('lastStep', lastStep);
+        if (JSON.stringify([i, j]) === JSON.stringify(lastStep)) {
+          const b = [...board]
+          b[i][j] = null
+          console.log(b)
+          setBoard(b)
+          setCurrentPlayer(currentPlayer === player1 ? player2 : player1)
+          setLastStep([])
+        }
+      })
+    )
+  }
 
   return (
     <div id='game'>
@@ -168,6 +186,7 @@ export default function Game(props: IProps) {
             <div key={i} className='grid-col' onClick={() => handleClick(i)}>
               {board[i].map((y: any, j: number) => (
                 <div
+                  key={j}
                   className={
                     winningCombination.filter(
                       (d) => JSON.stringify(d) === JSON.stringify([i, j])
@@ -228,6 +247,7 @@ export default function Game(props: IProps) {
           undoStepClick={undoStepClick}
           player1Avatar={player1Avatar}
           player2Avatar={player2Avatar}
+          lastStep={lastStep}
         />
       </div>
     </div>
