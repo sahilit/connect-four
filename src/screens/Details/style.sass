@@ -1,3 +1,6 @@
+$breakpoint-details: 640px;
+$breakpoint-mobile: 576px;
+
 #details
   padding-bottom: 1px
   
@@ -8,6 +11,12 @@
     margin: 30px auto
     max-width: 600px
     padding: 40px
+    
+    @media screen and (max-width: $breakpoint-details)
+      margin: 30px 15px
+
+    @media screen and (max-width: $breakpoint-mobile)
+      padding: 15px
 
     .details-box
       border: 1px solid #70707026
@@ -17,6 +26,10 @@
       padding: 10px
       position: relative
 
+      @media screen and (max-width: $breakpoint-mobile)
+        align-items: center
+        flex-direction: column
+
       &::after
         content: ''
         background-color: #70707055
@@ -25,6 +38,10 @@
         left: 10%
         position: absolute
         width: 86%
+
+        @media screen and (max-width: $breakpoint-mobile)
+          left: 5%
+          width: 90%
 
       .avatar-container
         border: 15px solid transparent
@@ -58,8 +75,15 @@
         justify-content: center
         padding: 0 15px
 
+        @media screen and (max-width: $breakpoint-mobile)
+          padding: 10px
+          text-align: center
+
         label
           color: #42424288
+
+          @media screen and (max-width: $breakpoint-mobile)
+            margin: 0
 
         input
           background: transparent
@@ -67,6 +91,9 @@
           color: #424242
           font-size: 24px
           outline: 0
+
+          @media screen and (max-width: $breakpoint-mobile)
+            text-align: center
     
     .bottom-line
       background: #70707044
