@@ -67,6 +67,8 @@ export default function Game(props: IProps) {
     )
   }, [])
 
+  const colHeightWidth = gameBoardWidth > 70 ? gameBoardWidth - 16.5 : gameBoardWidth - 8.5
+
   const handleClick = (id: number) => {
     if (winner === '') {
       const boardCopy = board.map((arr: any) => {
@@ -221,8 +223,8 @@ export default function Game(props: IProps) {
                     key={j}
                     className='grid-row'
                     style={{
-                      height: gameBoardWidth - 16.5,
-                      width: gameBoardWidth - 16.5,
+                      height: colHeightWidth,
+                      width: colHeightWidth,
                       borderColor:
                         board[i][j] === player1
                           ? '#37AC5D'
